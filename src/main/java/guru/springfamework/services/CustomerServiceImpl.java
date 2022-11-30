@@ -25,6 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
      * */
     @Override
     public List<CustomerDto> getAllCustomers() {
+
         return customerRepository
                 .findAll()
                 .stream()
@@ -38,6 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto getCustomerById(Long id) {
+
         return customerRepository
                 .findById(id)
                 .map(customerMapper::customerToCustomerDto)
@@ -49,11 +51,25 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer customer = customerMapper.customerDtoToCustomer(customerDto);
 
+        return saveCustomerAndReturnDto(customer);
+    }
+
+    @Override
+    public CustomerDto updateCustomer(Long id, CustomerDto customerDto) {
+
+        Customer customerToSave = customerMapper.customerDtoToCustomer(customerDto);
+        customerToSave.setId(id);
+
+        //hibernate will first select (then update) customer because customer with this id is already in DB
+        return saveCustomerAndReturnDto(customerToSave);
+    }
+
+    private CustomerDto saveCustomerAndReturnDto(Customer customer) {
+
         Customer savedCustomer = customerRepository.save(customer);
 
         CustomerDto savedCustomerDto = customerMapper.customerToCustomerDto(savedCustomer);
         savedCustomerDto.setCustomerUrl("/customers/" + savedCustomer.getId());
-
         return savedCustomerDto;
     }
 }
