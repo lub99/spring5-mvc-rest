@@ -19,6 +19,9 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerMapper = customerMapper;
     }
 
+    /**
+     * Return all customers from DB
+     * */
     @Override
     public List<CustomerDto> getAllCustomers() {
         return customerRepository
