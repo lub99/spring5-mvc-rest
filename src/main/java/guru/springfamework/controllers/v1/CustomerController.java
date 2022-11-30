@@ -3,12 +3,17 @@ package guru.springfamework.controllers.v1;
 import guru.springfamework.api.v1.model.CustomerDto;
 import guru.springfamework.api.v1.model.CustomerListDto;
 import guru.springfamework.services.CustomerService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
 
+/**
+ * No need for returning ResponseEntity<T> in RestController
+ * because @ResponseBody is default for controller.
+ * */
 @RestController
 @RequestMapping( CustomerController.BASE_URL)
 public class CustomerController {
@@ -21,15 +26,17 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<CustomerListDto> getAllCustomers(){
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerListDto getAllCustomers(){
         List<CustomerDto> customerDtos = customerService.getAllCustomers();
-        return ResponseEntity.ok(new CustomerListDto(customerDtos));
+        return new CustomerListDto(customerDtos);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id){
-        return ResponseEntity.ok(customerService.getCustomerById(id));
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerDto getCustomerById(@PathVariable Long id){
+        return customerService.getCustomerById(id);
     }
 
     @PostMapping
@@ -39,12 +46,14 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerDto> updateExistingCustomer(@PathVariable Long id, @RequestBody CustomerDto customerDto){
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerDto updateExistingCustomer(@PathVariable Long id, @RequestBody CustomerDto customerDto){
         CustomerDto savedCustomerDto = customerService.updateCustomer(id, customerDto);
-        return ResponseEntity.ok(savedCustomerDto);
+        return savedCustomerDto;
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteCustomer(@PathVariable Long id){
         customerService.deleteCustomerById(id);
     }
