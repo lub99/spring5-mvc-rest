@@ -42,4 +42,9 @@ public class CustomerController {
         CustomerDto savedCustomerDto = customerService.updateCustomer(id, customerDto);
         return ResponseEntity.ok(savedCustomerDto);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteCustomer(@PathVariable Long id){
+        customerService.deleteCustomerById(id);
+    }
 }

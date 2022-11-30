@@ -64,6 +64,11 @@ public class CustomerServiceImpl implements CustomerService {
         return saveCustomerAndReturnDto(customerToSave);
     }
 
+    @Override
+    public void deleteCustomerById(Long id) {
+        customerRepository.deleteById(id);
+    }
+
     private CustomerDto saveCustomerAndReturnDto(Customer customer) {
 
         Customer savedCustomer = customerRepository.save(customer);
