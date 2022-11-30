@@ -3,7 +3,7 @@ package guru.springfamework.repositories;
 import guru.springfamework.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+import java.util.Optional;
 
-    Customer findCustomerById(Long id);
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }
