@@ -2,6 +2,7 @@ package guru.springfamework.services;
 
 import guru.springfamework.api.v1.mapper.CustomerMapper;
 import guru.springfamework.api.v1.model.CustomerDto;
+import guru.springfamework.controllers.v1.CustomerController;
 import guru.springfamework.domain.Customer;
 import guru.springfamework.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     /**
      * Return all customers from DB
-     * */
+     */
     @Override
     public List<CustomerDto> getAllCustomers() {
 
@@ -31,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .stream()
                 .map(customer -> {
                     CustomerDto customerDto = customerMapper.customerToCustomerDto(customer);
-                    customerDto.setCustomerUrl("/customers/" + customer.getId());
+                    customerDto.setCustomerUrl(CustomerController.BASE_URL + "/" + customer.getId());
                     return customerDto;
                 })
                 .collect(Collectors.toList());
@@ -74,7 +75,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer savedCustomer = customerRepository.save(customer);
 
         CustomerDto savedCustomerDto = customerMapper.customerToCustomerDto(savedCustomer);
-        savedCustomerDto.setCustomerUrl("/customers/" + savedCustomer.getId());
+        savedCustomerDto.setCustomerUrl(CustomerController.BASE_URL + "/" + savedCustomer.getId());
         return savedCustomerDto;
     }
 }

@@ -56,7 +56,7 @@ public class CustomerControllerTest {
         when(customerService.getAllCustomers()).thenReturn(customerDtos);
 
 
-        mockMvc.perform(get("/api/v1/customers")
+        mockMvc.perform(get(CustomerController.BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.customers", hasSize(2)));
@@ -71,7 +71,7 @@ public class CustomerControllerTest {
 
         when(customerService.getCustomerById(anyLong())).thenReturn(customerMapper.customerToCustomerDto(customer));
 
-        mockMvc.perform(get("/api/v1/customers/" + ID)
+        mockMvc.perform(get(CustomerController.BASE_URL + "/" + ID)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo(FIRSTNAME)));

@@ -10,9 +10,10 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping( "${api.version}/customers")
+@RequestMapping( CustomerController.BASE_URL)
 public class CustomerController {
 
+    public static final String BASE_URL = "/api/v1/customers";
     private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
