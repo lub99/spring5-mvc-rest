@@ -2,6 +2,7 @@ package guru.springfamework.services;
 
 import guru.springfamework.api.v1.mapper.CategoryMapper;
 import guru.springfamework.api.v1.model.CategoryDto;
+import guru.springfamework.exceptions.ResourceNotFoundException;
 import guru.springfamework.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDto getCategoryByName(String name) {
-        return categoryMapper.categoryToCategoryDto(categoryRepository.findCategoryByName(name));
+        return categoryRepository
+                .findCategoryByName(name)
+                .map(categoryMapper::categoryToCategoryDto)
+                .orElseThrow(ResourceNotFoundException::new);
     }
 }
