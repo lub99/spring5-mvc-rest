@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by jt on 9/24/17.
  */
 @Data
-public class CategoryDTO {
+public class CategoryDto {
     private Long id;
     private String name;
 }

@@ -1,7 +1,6 @@
 package guru.springfamework.controllers.v1;
 
-import guru.springfamework.api.v1.model.CategoryDTO;
-import guru.springfamework.api.v1.model.CategoryListDto;
+import guru.springfamework.api.v1.model.CategoryDto;
 import guru.springfamework.services.CategoryService;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,16 +9,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -46,9 +42,9 @@ public class CategoryControllerTest {
 
     @Test
     public void getCategories() throws Exception {
-        List<CategoryDTO> categoryDTOS = Arrays.asList(new CategoryDTO(), new CategoryDTO());
+        List<CategoryDto> categoryDtos = Arrays.asList(new CategoryDto(), new CategoryDto());
 
-        when(categoryService.getAllCategories()).thenReturn(categoryDTOS);
+        when(categoryService.getAllCategories()).thenReturn(categoryDtos);
 
 
         mockMvc.perform(get("/api/v1/categories")
@@ -59,7 +55,7 @@ public class CategoryControllerTest {
 
     @Test
     public void getCategoryByName() throws Exception {
-        CategoryDTO categoryDto = new CategoryDTO();
+        CategoryDto categoryDto = new CategoryDto();
         categoryDto.setName(NAME);
 
         when(categoryService.getCategoryByName(anyString())).thenReturn(categoryDto);

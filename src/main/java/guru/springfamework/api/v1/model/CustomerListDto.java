@@ -1,3 +1,4 @@
+
 package guru.springfamework.api.v1.model;
 
 import lombok.AllArgsConstructor;
@@ -7,7 +8,6 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class CategoryListDto {
-
-    private List<CategoryDto> categories;
+public class CustomerListDto {
+    public List<CustomerDto> customers;
 }

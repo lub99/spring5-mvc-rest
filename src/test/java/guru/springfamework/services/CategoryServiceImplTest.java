@@ -1,13 +1,12 @@
 package guru.springfamework.services;
 
 import guru.springfamework.api.v1.mapper.CategoryMapper;
-import guru.springfamework.api.v1.model.CategoryDTO;
+import guru.springfamework.api.v1.model.CategoryDto;
 import guru.springfamework.domain.Category;
 import guru.springfamework.repositories.CategoryRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
@@ -44,11 +43,11 @@ public class CategoryServiceImplTest {
         when(categoryRepository.findAll()).thenReturn(categories);
 
         //when
-        List<CategoryDTO> categoryDTOS =  categoryService.getAllCategories();
+        List<CategoryDto> categoryDtos =  categoryService.getAllCategories();
 
         //then
-        assertNotNull(categoryDTOS);
-        assertEquals(2, categoryDTOS.size());
+        assertNotNull(categoryDtos);
+        assertEquals(2, categoryDtos.size());
     }
 
     @Test
@@ -60,7 +59,7 @@ public class CategoryServiceImplTest {
         when(categoryRepository.findCategoryByName(anyString())).thenReturn(category);
 
         //when
-        CategoryDTO categoryDTO =  categoryService.getCategoryByName(NAME);
+        CategoryDto categoryDTO =  categoryService.getCategoryByName(NAME);
 
         //then
         assertNotNull(categoryDTO);
