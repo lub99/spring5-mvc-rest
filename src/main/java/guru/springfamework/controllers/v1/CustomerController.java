@@ -19,7 +19,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping({"/", ""})
+    @GetMapping
     public ResponseEntity<CustomerListDto> getAllCustomers(){
         List<CustomerDto> customerDtos = customerService.getAllCustomers();
         return ResponseEntity.ok(new CustomerListDto(customerDtos));
@@ -31,7 +31,7 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getCustomerById(id));
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<CustomerDto> createNewCustomer(@RequestBody CustomerDto customerDto){
         CustomerDto savedCustomerDto = customerService.createNewCustomer(customerDto);
         return ResponseEntity.created(URI.create(savedCustomerDto.getCustomerUrl())).body(savedCustomerDto);
