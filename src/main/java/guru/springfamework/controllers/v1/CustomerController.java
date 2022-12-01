@@ -3,6 +3,8 @@ package guru.springfamework.controllers.v1;
 import guru.springfamework.api.v1.model.CustomerDto;
 import guru.springfamework.api.v1.model.CustomerListDto;
 import guru.springfamework.services.CustomerService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import java.util.List;
  * No need for returning ResponseEntity<T> in RestController
  * because @ResponseBody is default for controller.
  * */
+@Api("This is Customer controller")
 @RestController
 @RequestMapping( CustomerController.BASE_URL)
 public class CustomerController {
@@ -25,6 +28,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    @ApiOperation(value = "This will get all customers", notes = "Some notes of api.")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public CustomerListDto getAllCustomers(){
