@@ -28,7 +28,7 @@ public class VendorServiceImpl implements VendorService {
                 .stream()
                 .map(vendor -> {
                     VendorDto vendorDto = vendorMapper.vendorToVendorDto(vendor);
-                    vendorDto.setProductUrl(VendorController.BASE_URL + "/" + vendor.getId());
+                    vendorDto.setVendorUrl(VendorController.BASE_URL + "/" + vendor.getId());
                     return vendorDto;
                 })
                 .collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class VendorServiceImpl implements VendorService {
                 .findById(id)
                 .map(vendor -> {
                     VendorDto vendorDto = vendorMapper.vendorToVendorDto(vendor);
-                    vendorDto.setProductUrl(VendorController.BASE_URL + "/" + vendor.getId());
+                    vendorDto.setVendorUrl(VendorController.BASE_URL + "/" + vendor.getId());
                     return vendorDto;
                 })
                 .orElseThrow(ResourceNotFoundException::new);
@@ -73,7 +73,7 @@ public class VendorServiceImpl implements VendorService {
         Vendor savedVendor = vendorRepository.save(vendor);
 
         VendorDto savedVendorDto = vendorMapper.vendorToVendorDto(savedVendor);
-        savedVendorDto.setProductUrl(VendorController.BASE_URL + "/" + vendor.getId());
+        savedVendorDto.setVendorUrl(VendorController.BASE_URL + "/" + vendor.getId());
 
         return savedVendorDto;
     }
