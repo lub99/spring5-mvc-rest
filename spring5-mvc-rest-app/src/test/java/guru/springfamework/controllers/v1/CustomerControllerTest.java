@@ -2,10 +2,11 @@ package guru.springfamework.controllers.v1;
 
 import guru.springfamework.api.v1.mapper.CustomerMapper;
 import guru.springfamework.api.v1.model.CategoryDto;
-import guru.springfamework.api.v1.model.CustomerDto;
+
 import guru.springfamework.domain.Customer;
 import guru.springfamework.exceptions.ResourceNotFoundException;
 import guru.springfamework.services.CustomerService;
+import guru.springframework.model.CustomerDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

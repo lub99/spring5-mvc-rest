@@ -1,6 +1,8 @@
 package guru.springfamework.services;
 
-import guru.springfamework.api.v1.model.CustomerDto;
+
+
+import guru.springframework.model.CustomerDto;
 
 import java.util.List;
 
